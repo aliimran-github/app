@@ -1,0 +1,12 @@
+python-dotenv
+telebot
+pandas
+openpyxl
+
+# config
+# oauth2client
+# gspread
+# google-auth
+# google-auth-oauthlib
+# google-auth-httplib2
+# google-api-python-client
