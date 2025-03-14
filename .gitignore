@@ -8,9 +8,10 @@ venv
 # *data_dump*
 *key*
 
-# fiile
+# file
 .~*
 *log*
-.vscode
+/.vscode/
+/.draft/
 
 user_states.json

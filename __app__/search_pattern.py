@@ -15,7 +15,8 @@ def search_pattern(text, df, mode='boyer_more', list=['pattern']):
     """
     
     args = getArgument(); v = args.verbose
-    patterns, match, tekniks = [], [], []
+    # patterns, match, tekniks = [], [], []
+    patterns, match, tekniks = set(), set(), set()
 
     # Logging input
     print_text(f"[*] {" input ".center(50, '-')} [*]", v, 2)
@@ -30,13 +31,13 @@ def search_pattern(text, df, mode='boyer_more', list=['pattern']):
             value = row[list[1]] # Ambil nilai dari kolom kedua dalam 'list'
             teknik = row[list[3]] # Ambil teknik dari kolom keempat dalam 'list'
             if pattern not in patterns:
-                match.append(value)
-                patterns.append(pattern)
-            else:
-                match.append(value)
+                patterns.add(pattern)
+                match.add(value)
+            elif value not in match:
+                match.add(value)
                 print_text(f'    {pattern[:19].ljust(19)} : {value[:50].ljust(50)} \t found at {elapsed_time}s', v, 2)
             if teknik not in tekniks:
-                tekniks.append(teknik)
+                tekniks.add(teknik)
 
     # Logging hasil
     print_text(f"[-] {" result ".center(50, '-')}", v, 2)
@@ -56,5 +57,4 @@ def search_pattern(text, df, mode='boyer_more', list=['pattern']):
         print_text(f"[*] {" output ".center(50, '-')}", v, 2)
         print_text(header + body, v, 2)
         return header + body, tekniks
-    # return "⚠️ Tidak ditemukan hasil untuk pencarian Anda.", []
     return 0, []

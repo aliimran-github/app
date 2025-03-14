@@ -22,7 +22,7 @@ cd <repository_folder>
 docker build -t bot_pentest_suggest .
 
 # Run the bot in a container
-docker run -it --rm --name bot_pentest_suggest -v ./log/docker:/app/log bot_pentest_suggest
+docker run -it --rm --name bot_pentest_suggest -v ./:/app -v ./log/docker:/app/log bot_pentest_suggest
 ```
 
 ---

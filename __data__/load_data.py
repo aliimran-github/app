@@ -40,9 +40,6 @@ class DataLoader:
             # Mengisi nilai kosong pada setiap kolom dengan nilai sebelumnya (forward fill)
             for row in self.row:
                 df[row] = df[row].ffill()
-                
-            # print(self.row)
-            # print(df[self.row[2]].dtypes)
             
         except ValueError as e:
             # Jika terjadi error (misalnya kolom tidak ditemukan), cetak pesan error dan keluar
@@ -50,13 +47,6 @@ class DataLoader:
             exit()
 
         if sort == True:
-            # Konversi kolom prioritas ke numerik dan isi NaN dengan nilai besar
-            # df['prioritas'] = pd.to_numeric(df['prioritas'], errors='coerce')
-            # df['prioritas'] = df['prioritas'].fillna(float('inf'))
-
-            # Jika parameter `sort` True, urutkan berdasarkan kolom ke-3 dalam `row`
-            # df = df.sort_values(self.row[2]).reset_index(drop=True)
-
             df = df.sort_values(self.row[2], ascending=True).reset_index(drop=True)
 
         return df # Mengembalikan DataFrame yang telah diproses
