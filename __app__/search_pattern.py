@@ -15,8 +15,8 @@ def search_pattern(text, df, mode='boyer_more', list=['pattern']):
     """
     
     args = getArgument(); v = args.verbose
-    # patterns, match, tekniks = [], [], []
     patterns, match, tekniks = set(), set(), set()
+    average = []
 
     # Logging input
     print_text(f"[*] {" input ".center(50, '-')} [*]", v, 2)
@@ -36,6 +36,7 @@ def search_pattern(text, df, mode='boyer_more', list=['pattern']):
             elif value not in match:
                 match.add(value)
                 print_text(f'    {pattern[:19].ljust(19)} : {value[:50].ljust(50)} \t found at {elapsed_time}s', v, 2)
+                average.append(float(elapsed_time))
             if teknik not in tekniks:
                 tekniks.add(teknik)
 
@@ -43,6 +44,7 @@ def search_pattern(text, df, mode='boyer_more', list=['pattern']):
     print_text(f"[-] {" result ".center(50, '-')}", v, 2)
     print_text(f"    pattern \t\t: {', '.join(patterns)}", v, 1)
     print_text(f"    teknik \t\t: {', '.join(tekniks)}", v, 1)
+    print_text(f"    average \t\t: {sum(average) / len(average):.10f}s", v, 1)
     print_text(f"    value \t\t: {', '.join(match)[:200].ljust(20)} \n", v, 1)
     
     # Jika ada hasil yang ditemukan
