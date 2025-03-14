@@ -1,58 +1,104 @@
-# cara setup token
-- buat bot baru di tele @fatherbot
+# 📌 Setup Guide for Bot Pentest Suggest
 
-  ![alt text](docs/images/image.png)
-  ![alt text](docs/images/image-1.png)
-- buat file .env dan masukan token bot api telegram
-  ```py
-  export BOT_TOKEN=<token>
-  ```
-
-# setup
-## with venv pyenv
+## 🪞 Clone the Repository
 ```bash
-# setup
+git clone <repository_url>
+cd <repository_folder>
+```
+
+## 🔑 Setting Up the Telegram Bot Token
+1. Create a new bot using [@BotFather](https://t.me/BotFather) on Telegram.
+2. Follow the instructions to obtain your bot API token.
+3. Create a `.env` file and add your bot token:
+   ```sh
+   export BOT_TOKEN=<your_token_here>
+   ```
+
+---
+
+## 🐳 Running with Docker
+```bash
+# Build the Docker image
+docker build -t bot_pentest_suggest .
+
+# Run the bot in a container
+docker run -it --rm --name bot_pentest_suggest -v ./log/docker:/app/log bot_pentest_suggest
+```
+
+---
+
+## 🖥️ Setup Using a Virtual Environment
+```bash
+# Create and activate a virtual environment
+python3 -m venv venv
+source venv/bin/activate
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Make the bot executable
+chmod +x bot.py
+```
+
+---
+
+## 🚀 Setup Using Pyenv + Virtual Environment
+```bash
+# Install pyenv
 curl https://pyenv.run | bash
 
+# Configure shell
 cat >> ~/.bashrc << 'EOF'
 export PATH="$HOME/.pyenv/bin:$PATH"
 eval "$(pyenv init --path)"
 eval "$(pyenv virtualenv-init -)"
 EOF
 
-echo 'eval "\$(pyenv virtualenv-init -)' > ~/.bashrc
 exec $SHELL
+
+# Install Python and set global version
 pyenv install 3.12.8
 pyenv global 3.12.8
 
-git clone https://github.com/ariafatah0711/bot_pentest_suggest
-cd bot_pentest_suggest
-# pyenv virtualenv 3.12.8 venvs
-# pyenv local venv
+# Create and activate a virtual environment
 python3 -m venv venv
-pip3 install -r req.txt
-chmod +x main.py
+source venv/bin/activate
 
+# Install dependencies
+pip install -r requirements.txt
+
+# Make the bot executable
+chmod +x bot.py
+
+# Run the bot
+./bot.py
 ```
 
-## with venv default
+---
+
+## ▶️ Running the Bot
 ```bash
-# with python3
-git clone https://github.com/ariafatah0711/bot_pentest_suggest
-cd bot_pentest_suggest
-python3 -m venv venv
-venv/bin/pip3 install -r req.txt
-chmod +x main.py
+# Run the bot
+python bot.py
+
+# Or, if using a virtual environment
+./bot.py
 ```
 
-# run
+## 🔧 Additional Options
 ```bash
-# run
-./main.py
+./bot.py --show   # Display DF
+./bot.py -v       # Verbose mode level 1
+./bot.py -vv      # Verbose mode level 2
+```
 
-# remove __pycache__
+---
+
+## 🛠️ Cleanup (Optional)
+```bash
+# Remove Python cache files
 find . -name "__pycache__" -o -name "*.pyc" | xargs rm -rf
 
-# remove log
+# Clear log files
 rm -rf log/*
 ```
