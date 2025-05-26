@@ -39,6 +39,7 @@ def search_pattern(text, df, mode='boyer_more', list=['pattern']):
                 average.append(float(elapsed_time))
             if teknik not in tekniks:
                 tekniks.append(teknik)
+
     # Logging hasil
     print_text(f"[-] {" result ".center(50, '-')}", v, 2)
     print_text(f"    pattern \t\t: {', '.join(patterns)}", v, 1)
