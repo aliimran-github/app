@@ -19,10 +19,18 @@ def search_pattern(text, df, mode='boyer_more', list=['pattern']):
     average = []
 
     # Logging input
-    value = row[list[1]] # Ambil nilai dari kolom kedua dalam 'list'
-            teknik = row[list[3]] # Ambil teknik dari kolom keempat dalam 'list'
+    print_text(f"[*] {" input ".center(50, '-')} [*]", v, 2)
+    print_text(f'    text \t\t: {text}', v, 1)
+    print_text(f'    mode \t\t: {mode}', v, 1)
+    print_text(f"[-] {" pattern ".center(50, '-')}", v, 2)
 
-    if pattern not in patterns:
+    for index, row in df.iterrows():
+        pattern = row[list[0]] # Ambil pola dari kolom pertama dalam 'list'
+        position, elapsed_time = matching_speed(text.lower(), pattern.lower(), mode)
+        if position != -1: # Jika pola ditemukan dalam teks
+            value = row[list[1]] # Ambil nilai dari kolom kedua dalam 'list'
+            teknik = row[list[3]] # Ambil teknik dari kolom keempat dalam 'list'
+            if pattern not in patterns:
                 patterns.append(pattern)
                 match.append(value)
             elif value not in match:
@@ -31,7 +39,6 @@ def search_pattern(text, df, mode='boyer_more', list=['pattern']):
                 average.append(float(elapsed_time))
             if teknik not in tekniks:
                 tekniks.append(teknik)
-
     # Logging hasil
     print_text(f"[-] {" result ".center(50, '-')}", v, 2)
     print_text(f"    pattern \t\t: {', '.join(patterns)}", v, 1)
